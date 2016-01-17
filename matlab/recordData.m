@@ -23,9 +23,7 @@ for i = 1:numKeys
     for j = 1:numIterations
         % Prompt and record
         display(sprintf('+++ START RECORDING %i FOR KEY %s +++', j, keyArray{i}));
-        record(r);
-        pause(sampleLength);
-        stop(r);
+        recordblocking(r,sampleLength);
         display(sprintf('--- STOP RECORDING ---', j, i));
         trainingData{i,j} = getaudiodata(r, 'double');
         
