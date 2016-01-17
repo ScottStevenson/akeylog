@@ -14,9 +14,12 @@ end
 r = audiorecorder(44100,16,1);
 
 % Loop for recording and cropping all training data
-pause(0.5); 
+% display(sprintf('Get Ready...'));
+% pause(2);
 trainingData = cell(numKeys, numIterations);
 for i = 1:numKeys
+    display(sprintf('Get Ready to push: %s', keyArray{i}));
+    pause(2);
     for j = 1:numIterations
         % Prompt and record
         display(sprintf('+++ START RECORDING %i FOR KEY %s +++', j, keyArray{i}));
@@ -27,8 +30,11 @@ for i = 1:numKeys
         trainingData{i,j} = getaudiodata(r, 'double');
         
         % Crop out from maximum amplitude to +6000 samples
+        % TODO: This should be separated out into processing stage 
+        % if this project is expanded
         [M I] = max(trainingData{i,j});
-        trainingData{i,j} = trainingData{i,j}(I:min(I+6000, sampleLength*44100/2));
+        %trainingData{i,j} = trainingData{i,j}(I:min(I+6000, sampleLength*44100/2));
+        trainingData{i,j} = trainingData{i,j}(I:I+6000);
         
         % Plot recording so that problems can be spotted
         plot(trainingData{i,j});

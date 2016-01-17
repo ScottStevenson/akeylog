@@ -1,1 +1,0 @@
-r = audiorecorder(44100,16,1);
