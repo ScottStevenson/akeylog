@@ -51,18 +51,5 @@ for i = 1:numKeys
      end
 end
 
-% Old two character version
-% Produce array of FFTs and targets to be used for training
-% N = 512;
-% netInputs = zeros(N, numIterations * numKeys);
-% netOutputs = zeros(1, numIterations * numKeys);
-% for i = 1:numKeys
-%     for j = 1:numIterations
-%         index = j + (i-1)*numIterations;
-%         netInputs(:, index) = abs(fft(trainingData{i,j},N));
-%         netOutputs(index) = i-1;
-%     end
-% end
-
 %net = newpr(netInputs, netOutputs, 20);
 %net = train(net, netInputs, netOutputs);
